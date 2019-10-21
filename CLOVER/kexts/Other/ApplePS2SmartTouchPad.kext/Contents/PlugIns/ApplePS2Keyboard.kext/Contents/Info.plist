@@ -72,13 +72,13 @@
 			<key>Fn Keys Mode 1</key>
 			<dict>
 				<key>BrightnessDown</key>
-				<string>F1</string>
-				<key>BrightnessUp</key>
 				<string>F2</string>
-				<key>KBBacklightDown</key>
+				<key>BrightnessUp</key>
 				<string>F3</string>
+				<key>KBBacklightDown</key>
+				<string></string>
 				<key>KBBacklightUp</key>
-				<string>F4</string>
+				<string></string>
 				<key>Launchpad</key>
 				<string>F4</string>
 				<key>MediaNext</key>
@@ -90,11 +90,11 @@
 				<key>Misson Control</key>
 				<string>F3</string>
 				<key>SleepDisplay</key>
-				<string>F5</string>
+				<string>F1</string>
 				<key>Touchpad</key>
 				<string>Pause</string>
 				<key>VideoMirror</key>
-				<string>F6</string>
+				<string>F2</string>
 				<key>VolumeDown</key>
 				<string>F11</string>
 				<key>VolumeMute</key>
@@ -105,13 +105,9 @@
 			<key>Fn Keys Mode 2</key>
 			<dict>
 				<key>BrightnessDown</key>
-				<string>F5</string>
+				<string>F2</string>
 				<key>BrightnessUp</key>
-				<string>F6</string>
-				<key>KBBacklightDown</key>
 				<string>F3</string>
-				<key>KBBacklightUp</key>
-				<string>F4</string>
 				<key>Launchpad</key>
 				<string>F4</string>
 				<key>MediaNext</key>
@@ -156,9 +152,9 @@
 				<key>Enable Sierra Caps Lock Fix</key>
 				<true/>
 				<key>FinerFnBrightnessControl</key>
-				<true/>
+				<false/>
 				<key>FinerFnVolumeControl</key>
-				<true/>
+				<false/>
 				<key>Make Caps Lock into key</key>
 				<integer>0</integer>
 				<key>Make ISO keypad key . to ,</key>

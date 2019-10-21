@@ -38,7 +38,5 @@ Hackintosh EFI Configurations of Mechrevo X6Ti(-m)
 ### Not yet Working
 
 - SD Slot
-- Stock Wireless Network Adapter
-- Nvidia Graphics Card
-
-
+- Bluetooth
+- Thunderbolt
