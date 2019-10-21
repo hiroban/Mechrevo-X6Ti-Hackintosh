@@ -4,49 +4,60 @@
 <dict>
 	<key>ACPI</key>
 	<dict>
+		<key>AutoMerge</key>
+		<true/>
 		<key>DSDT</key>
 		<dict>
 			<key>Debug</key>
 			<false/>
 			<key>DropOEM_DSM</key>
 			<false/>
+			<key>Fixes</key>
+			<dict>
+				<key>FixLAN</key>
+				<true/>
+				<key>FixShutdown</key>
+				<true/>
+				<key>FixUSB</key>
+				<true/>
+			</dict>
 			<key>Name</key>
 			<string>DSDT.aml</string>
 			<key>Patches</key>
 			<array>
 				<dict>
 					<key>Comment</key>
-					<string>change EHC1 to EH01</string>
+					<string>_DSM to XDSM</string>
 					<key>Disabled</key>
 					<false/>
 					<key>Find</key>
-					<data>RUhDMQ==</data>
+					<data>X0RTTQ==</data>
 					<key>Replace</key>
-					<data>RUgwMQ==</data>
+					<data>WERTTQ==</data>
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change EHC2 to EH02</string>
+					<string>OSID to XSID</string>
 					<key>Disabled</key>
 					<false/>
 					<key>Find</key>
-					<data>RUhDMg==</data>
+					<data>T1NJRA==</data>
 					<key>Replace</key>
-					<data>RUgwMg==</data>
+					<data>WFNJRA==</data>
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change SAT0 to SATA</string>
+					<string>_OSI to XOSI</string>
 					<key>Disabled</key>
 					<false/>
 					<key>Find</key>
-					<data>U0FUMA==</data>
+					<data>X09TSQ==</data>
 					<key>Replace</key>
-					<data>U0FUQQ==</data>
+					<data>WE9TSQ==</data>
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change GFX0 to IGPU</string>
+					<string>GFX0 to IGPU</string>
 					<key>Disabled</key>
 					<false/>
 					<key>Find</key>
@@ -56,13 +67,23 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change HDAS to HDEF</string>
+					<string>HDAS to HDEF</string>
 					<key>Disabled</key>
 					<false/>
 					<key>Find</key>
 					<data>SERBUw==</data>
 					<key>Replace</key>
 					<data>SERFRg==</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>EC0 to EC</string>
+					<key>Disabled</key>
+					<false/>
+					<key>Find</key>
+					<data>RUMwXw==</data>
+					<key>Replace</key>
+					<data>RUNfXw==</data>
 				</dict>
 				<dict>
 					<key>Comment</key>
@@ -76,23 +97,13 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change MEI to IMEI</string>
+					<string>Comment: Fix AsRock Z390 BIOS DSDT Device(RTC) bug</string>
 					<key>Disabled</key>
 					<false/>
 					<key>Find</key>
-					<data>TUVJXw==</data>
+					<data>oAqTU1RBUwE=</data>
 					<key>Replace</key>
-					<data>SU1FSQ==</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
-					<string>change LPC to LPCB</string>
-					<key>Disabled</key>
-					<false/>
-					<key>Find</key>
-					<data>TFBDXw==</data>
-					<key>Replace</key>
-					<data>TFBDQg==</data>
+					<data>oAqRCv8L//8=</data>
 				</dict>
 			</array>
 			<key>ReuseFFFF</key>
@@ -102,34 +113,46 @@
 		<array>
 			<dict>
 				<key>Signature</key>
-				<string>SSDT</string>
-				<key>TableId</key>
-				<string>xh_rvp10</string>
-			</dict>
-			<dict>
-				<key>Signature</key>
 				<string>DMAR</string>
 			</dict>
 			<dict>
 				<key>Signature</key>
-				<string>MCFG</string>
+				<string>SSDT</string>
+				<key>TableId</key>
+				<string>Cpu0Ist</string>
+			</dict>
+			<dict>
+				<key>Signature</key>
+				<string>SSDT</string>
+				<key>TableId</key>
+				<string>CpuPm</string>
 			</dict>
 		</array>
+		<key>FixHeaders</key>
+		<true/>
+		<key>FixMCFG</key>
+		<true/>
+		<key>HaltEnabler</key>
+		<true/>
 		<key>SSDT</key>
 		<dict>
+			<key>DoubleFirstState</key>
+			<true/>
 			<key>DropOem</key>
 			<false/>
 			<key>Generate</key>
 			<dict>
 				<key>CStates</key>
-				<true/>
+				<false/>
 				<key>PStates</key>
-				<true/>
+				<false/>
 				<key>PluginType</key>
 				<true/>
 			</dict>
-			<key>NoOemTableId</key>
+			<key>NoDynamicExtract</key>
 			<true/>
+			<key>NoOemTableId</key>
+			<false/>
 			<key>PluginType</key>
 			<string>1</string>
 		</dict>
@@ -137,20 +160,35 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>kext-dev-mode=1 dart=0 nvda_drv=1 -cdfon -igfxnohdmi</string>
+		<string>cpus=7 lilucpu=8 dart=0 -alcbeta -abm_firstpolldelay=16000 -lilubetaall debug=0x100 npci=0x2000 kext-dev-mode=1 brcmfx-country=HK</string>
 		<key>DefaultVolume</key>
-		<string>MacOS</string>
+		<string>Mac</string>
+		<key>Legacy</key>
+		<string>PBR</string>
 		<key>Timeout</key>
 		<integer>5</integer>
 	</dict>
 	<key>Devices</key>
 	<dict>
+		<key>AddProperties</key>
+		<array>
+			<dict>
+				<key>Device</key>
+				<string>IntelGFX</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Key</key>
+				<string>AAPL,GfxYTile </string>
+				<key>Value</key>
+				<data>AQAAAA==</data>
+			</dict>
+		</array>
 		<key>Audio</key>
 		<dict>
 			<key>AFGLowPowerState</key>
 			<false/>
 			<key>Inject</key>
-			<integer>6</integer>
+			<integer>3</integer>
 			<key>ResetHDA</key>
 			<true/>
 		</dict>
@@ -159,7 +197,7 @@
 			<key>PciRoot(0x0)/Pci(0x1f,0x3)</key>
 			<dict>
 				<key>layout-id</key>
-				<data>BgAAAA==</data>
+				<data>AwAAAA==</data>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
@@ -269,11 +307,13 @@
 			<key>ATI</key>
 			<false/>
 			<key>Intel</key>
-			<true/>
+			<false/>
 			<key>NVidia</key>
-			<true/>
+			<false/>
 		</dict>
 		<key>LoadVBios</key>
+		<false/>
+		<key>NvidiaGeneric</key>
 		<false/>
 		<key>PatchVBios</key>
 		<false/>
@@ -285,11 +325,11 @@
 		<key>AppleRTC</key>
 		<true/>
 		<key>KernelCpu</key>
-		<true/>
+		<false/>
 		<key>KernelLapic</key>
 		<true/>
 		<key>KernelPm</key>
-		<true/>
+		<false/>
 		<key>KernelToPatch</key>
 		<array>
 			<dict>
@@ -299,10 +339,54 @@
 				<false/>
 				<key>Find</key>
 				<data>ILniAAAADzA=</data>
-				<key>MatchOS</key>
-				<string>10.12</string>
 				<key>Replace</key>
 				<data>ILniAAAAkJA=</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable panic kext logging on 10.13 release kernel (credit Vandroiy)</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>igKEwHRE</data>
+				<key>MatchOS</key>
+				<string>10.13.x</string>
+				<key>Replace</key>
+				<data>igKEwOtE</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable panic kext logging on 10.13 debug kernel (credit Vandroiy)</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>sABMi1Xw</data>
+				<key>MatchOS</key>
+				<string>10.13.x</string>
+				<key>Replace</key>
+				<data>SIPEQF3D</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable panic kext logging on 10.14 release kernel</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>igKEwHRC</data>
+				<key>MatchOS</key>
+				<string>10.14.x</string>
+				<key>Replace</key>
+				<data>igKEwOtC</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>10.14.5</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>AIoChMB0</data>
+				<key>Replace</key>
+				<data>AIoChMDr</data>
 			</dict>
 		</array>
 		<key>KextsToPatch</key>
@@ -317,7 +401,7 @@
 				<key>InfoPlistPatch</key>
 				<false/>
 				<key>Name</key>
-				<string>com.apple.driver.AppleHDA</string>
+				<string>AppleHDA</string>
 				<key>Replace</key>
 				<data>AAAAAA==</data>
 			</dict>
@@ -331,7 +415,7 @@
 				<key>InfoPlistPatch</key>
 				<false/>
 				<key>Name</key>
-				<string>com.apple.driver.AppleHDA</string>
+				<string>AppleHDA</string>
 				<key>Replace</key>
 				<data>aQLsEA==</data>
 			</dict>
@@ -369,12 +453,8 @@
 	</dict>
 	<key>RtVariables</key>
 	<dict>
-		<key>BooterConfig</key>
-		<string>0x28</string>
-		<key>CsrActiveConfig</key>
-		<string>0x67</string>
 		<key>ROM</key>
-		<data>rUyiOt3a</data>
+		<data>iupCneQh</data>
 	</dict>
 	<key>SMBIOS</key>
 	<dict>
@@ -389,7 +469,7 @@
 		<key>BoardManufacturer</key>
 		<string>Apple Inc.</string>
 		<key>BoardSerialNumber</key>
-		<string>C02925310GU0000JA</string>
+		<string>C029013034N00001F</string>
 		<key>BoardType</key>
 		<integer>10</integer>
 		<key>BoardVersion</key>
@@ -419,20 +499,18 @@
 		<key>ProductName</key>
 		<string>MacBookPro15,3</string>
 		<key>SerialNumber</key>
-		<string>C02YW6Y7LVCG</string>
+		<string>C02Y27ZULVCG</string>
 		<key>SmUUID</key>
-		<string>A14D9BC4-FD3F-455F-B93A-6AD86D3ADDDA</string>
+		<string>A653C1D9-35D4-4445-BC1F-EF1C609DE421</string>
 		<key>Version</key>
 		<string>1.0</string>
 	</dict>
 	<key>SystemParameters</key>
 	<dict>
 		<key>CustomUUID</key>
-		<string>0BCEF40B-7B10-4FC1-A0BD-B509D91916CC</string>
+		<string>F6E10CFD-E59C-53D8-A6E7-546650779C56</string>
 		<key>InjectKexts</key>
 		<string>Detect</string>
-		<key>NvidiaWeb</key>
-		<true/>
 	</dict>
 </dict>
 </plist>

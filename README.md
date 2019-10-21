@@ -38,5 +38,7 @@ Hackintosh EFI Configurations of Mechrevo X6Ti(-m)
 ### Not yet Working
 
 - SD Slot
-- Bluetooth
 - Thunderbolt
+- Battery Management
+- Nvidia Graphics Card
+- TouchPad Gesture Driven
